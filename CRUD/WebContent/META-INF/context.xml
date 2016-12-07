@@ -1,5 +1,5 @@
  <Context> 
-     <Resource name="jdbc/KsmartDB" 
+     <Resource name="jdbc/OracleDB" 
          auth="Container"
          type="javax.sql.DataSource" 
          username="ACE" 
