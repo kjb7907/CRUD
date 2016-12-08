@@ -10,11 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-ArrayList<School> arr = (ArrayList<School>)request.getAttribute("scList");
-System.out.println(arr.get(1));
-//request 넘어온지 확인
-%>
+
 <%@ include file = "../module/naviside.jsp" %>
 
 

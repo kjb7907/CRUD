@@ -19,7 +19,7 @@ public class StaffAddFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("euc-kr");
 		ActionForward forward = new ActionForward();
-		System.out.println("----- 직원 등록 폼 준비단계 -----");
+		System.out.println("----- StaffAddFormAction.java start 직원 등록 폼 준비단계 시작 -----");
 		
 		//종교 학력 기술 가져오기
 		
@@ -34,9 +34,11 @@ public class StaffAddFormAction implements Action {
 		request.setAttribute("scList", scList);
 		request.setAttribute("skList", skList);
 		
-		System.out.println(scList.get(2));
+		
 		forward.setPath("/WEB-INF/jsp/staff/staffAdd.jsp");
 		
+		System.out.println("----- StaffAddFormAction.java start 직원 등록 폼 준비단계 종료 -----");
+		System.out.println("");
 		return forward;
 		
 

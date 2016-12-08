@@ -34,7 +34,7 @@ public class Controller extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("-----doProcess메서드 시작-----");
+		System.out.println("-----Controller.java Start 컨트롤러 시작  -----");
 		 String RequestURI=request.getRequestURI();
 		 String contextPath=request.getContextPath();
 		 String command=RequestURI.substring(contextPath.length());
@@ -74,13 +74,14 @@ public class Controller extends HttpServlet {
 		 	
 		 //forward
 			if(forward != null){
-					
+					System.out.println("----- 경로 이동 시작 ------");
 					RequestDispatcher dispatcher=
 						request.getRequestDispatcher(forward.getPath());
 					System.out.println(forward.getPath() + "<--- forward.getPath()[jsp 이동경로]Controller.java");
 					System.out.println();
 					dispatcher.forward(request, response);
 			}
+			System.out.println("-----Controller.java close 컨트롤러 종료-----");
 	}
 }
 
