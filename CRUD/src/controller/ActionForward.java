@@ -1,5 +1,6 @@
 package controller;
 
+//forward 할 경로를 지정하는 메서드 
 public class ActionForward {
 	private boolean isRedirect=false;
 	private String path=null;

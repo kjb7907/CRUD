@@ -16,13 +16,12 @@ import dto.School;
 import dto.Skill;
 
 public class ScRgSkDao extends Dao {
-	DataSource ds;
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs;
 	
 
-	//생성자메서드 DB연결
+	//생성자메서드
 	public ScRgSkDao() {
 		System.out.println("----- dao.ScRgSkDao.java start 학력,종교,기술 정보 가져오는 클래스 시작 -----");
 		System.out.println("");

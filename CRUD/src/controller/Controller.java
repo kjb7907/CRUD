@@ -63,7 +63,7 @@ public class Controller extends HttpServlet {
 		 }else if(command.equals("/StaffAddAction.jbin")){
 			 
 			 System.out.println("----- 조건 : 사원등록 처리  -----");
-			 action  = new StaffAddFormAction();
+			 action  = new StaffAddAction();
 				try {
 					forward=action.execute(request, response );
 				} catch (Exception e) {
@@ -82,6 +82,7 @@ public class Controller extends HttpServlet {
 					dispatcher.forward(request, response);
 			}
 			System.out.println("-----Controller.java close 컨트롤러 종료-----");
+			System.out.println("");
 	}
 }
 

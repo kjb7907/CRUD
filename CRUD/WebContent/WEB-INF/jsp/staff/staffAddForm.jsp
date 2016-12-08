@@ -40,12 +40,12 @@
 				
 				<tr>
 					<td>Á¾±³</td> 
-					<td>
+					<td>				
 						<select  name = "religionNo" id="select" style = "width:100px;">
-				          <option value= ""></option>
-						<c:forEach var="rel" items="${relList}">
-							<option value = "${rel.no}">${rel.name}
-						</c:forEach>
+				          	<option value= ""></option>
+							<c:forEach var="rel" items="${relList}">
+								<option value = "${rel.no}"> ${rel.no} ${rel.name}</option>
+							</c:forEach>
 						</select></td>
 				</tr>
 				
