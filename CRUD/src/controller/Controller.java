@@ -40,8 +40,8 @@ public class Controller extends HttpServlet {
 		 String command=RequestURI.substring(contextPath.length());
 		 //요청온 주소에서 contextPath만큼 자른 문자열로 요청 판단
 		 System.out.println("요청 : "+command);
-		 ActionForward forward=null;
 		 Action action=null;
+		 String path=null;
 		 
 		 //사원 등록 요청시
 		 if(command.equals("/staffAddForm.jbin")){
@@ -54,7 +54,7 @@ public class Controller extends HttpServlet {
 			  */
 				action = new StaffAddFormAction();
 				try {
-					forward = action.execute(request, response);
+					path = action.execute(request, response);
 				} catch (Exception e) {
 
 					e.printStackTrace();
@@ -65,7 +65,27 @@ public class Controller extends HttpServlet {
 			 System.out.println("----- 조건 : 사원등록 처리  -----");
 			 action  = new StaffAddAction();
 				try {
-					forward=action.execute(request, response );
+					path=action.execute(request, response );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+		 }else if(command.equals("/StaffList.jbin")){
+			 
+			 System.out.println("----- 조건 : 사원 리스트 -----");
+			 action  = new StaffAddAction();
+				try {
+					path=action.execute(request, response );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+		 }else if(command.equals("/StaffSearch.jbin")){
+			 
+			 System.out.println("----- 조건 : 사원조회 -----");
+			 action  = new StaffAddAction();
+				try {
+					path=action.execute(request, response );
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -73,11 +93,11 @@ public class Controller extends HttpServlet {
 		 }
 		 	
 		 //forward
-			if(forward != null){
+			if(path != null){
 					System.out.println("----- 경로 이동 시작 ------");
 					RequestDispatcher dispatcher=
-						request.getRequestDispatcher(forward.getPath());
-					System.out.println(forward.getPath() + "<--- forward.getPath()[jsp 이동경로]Controller.java");
+						request.getRequestDispatcher(path);
+					System.out.println(path + "<--- forward.getPath()[jsp 이동경로]Controller.java");
 					System.out.println();
 					dispatcher.forward(request, response);
 			}

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import dto.Skill;
 import dto.Staff;
 
-public class StaffAndSkillDao extends Dao {
+public class StaffAndSkillDao{
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs;
@@ -21,7 +21,7 @@ public class StaffAndSkillDao extends Dao {
 	
 	public int StaffAndSkillInsert(Staff staff,ArrayList<Skill> arr){
 		int result = 0;
-		conn = DBUtil.getConnection();
+		conn = Dao.getConnection();
 		
 		try {
 			//사원번호 가져오기

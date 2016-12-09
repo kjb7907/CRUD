@@ -35,9 +35,9 @@
 		   	관리자 메뉴
 		  </a>
 
-		  <a href="#" class="list-group-item">사원 목록
+		  <a href="<%=request.getContextPath() %>/staffList.jbin" class="list-group-item">사원 목록
 		  </a>
-		  <a href="#" class="list-group-item">사원 조회
+		  <a href="<%=request.getContextPath() %>/staffSearch.jbin" class="list-group-item">사원 조회
 		  </a>
 		  <a href="<%=request.getContextPath() %>/staffAddForm.jbin" class="list-group-item">사원 등록
 		  </a>

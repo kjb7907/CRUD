@@ -16,7 +16,7 @@ import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 public class StaffAddAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		System.out.println("----- StaffAddAction.java start 사원 등록 처리 단계 시작 -----");
 		request.setCharacterEncoding("euc-kr");
@@ -32,7 +32,6 @@ public class StaffAddAction implements Action {
 		System.out.println("졸업년도 : "+graduateday);
 		String[] skillNo = request.getParameterValues("skillNo");
 		
-		ActionForward forward = new ActionForward();
 		
 		//사원 등록에 필요한 객체들 생성
 		Staff staff = new Staff();

@@ -15,7 +15,7 @@ import dto.Religion;
 import dto.School;
 import dto.Skill;
 
-public class ScRgSkDao extends Dao {
+public class ScRgSkDao {
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs;
@@ -30,7 +30,7 @@ public class ScRgSkDao extends Dao {
 	public ArrayList<School> schoolSelect(){
 		
 		System.out.println("----- dao.ScRgSkDao.schoolSelect 학력 항목 가져오는 메서드 -----");
-		conn=DBUtil.getConnection();
+		conn=Dao.getConnection();
 		ArrayList<School> arr = new ArrayList<School>();
 		try{
 			pstmt = conn.prepareStatement("SELECT * FROM SCHOOL ORDER BY no ASC");
@@ -48,7 +48,7 @@ public class ScRgSkDao extends Dao {
 			System.out.println("----- 학력항목 가져오기 실패 -----");
 			e.printStackTrace();
 		}finally{
-			super.close(rs, pstmt,conn);
+			Dao.close1(rs, pstmt,conn);
 		}
 		return arr;
 	}
@@ -56,7 +56,7 @@ public class ScRgSkDao extends Dao {
 	public ArrayList<Religion> religionSelect(){
 		
 		System.out.println("----- dao.ScRgSkDao.religionSelect 종교 항목 가져오는 메서드 -----");
-		conn=DBUtil.getConnection();
+		conn=Dao.getConnection();
 		ArrayList<Religion> arr = new ArrayList<Religion>();
 		try{
 			pstmt = conn.prepareStatement("SELECT * FROM RELIGION ORDER BY no ASC");
@@ -74,7 +74,7 @@ public class ScRgSkDao extends Dao {
 			System.out.println("----- 종교항목 가져오기 실패 -----");
 			e.printStackTrace();
 		}finally{
-			super.close(rs, pstmt,conn);
+			Dao.close1(rs, pstmt,conn);
 		}
 		return arr;
 	}
@@ -82,7 +82,7 @@ public class ScRgSkDao extends Dao {
 	public ArrayList<Skill> skillSelect(){
 		
 		System.out.println("----- dao.ScRgSkDao.skillSelect 기술 항목 가져오는 메서드 -----");
-		conn=DBUtil.getConnection();
+		conn=Dao.getConnection();
 		ArrayList<Skill> arr = new ArrayList<Skill>();
 		try{
 			pstmt = conn.prepareStatement("SELECT * FROM Skill ORDER BY no ASC");
@@ -100,7 +100,7 @@ public class ScRgSkDao extends Dao {
 			System.out.println("----- 기술항목 가져오기 실패 -----");
 			e.printStackTrace();
 		}finally{
-			super.close(rs, pstmt,conn);
+			Dao.close1(rs, pstmt,conn);
 		}
 		return arr;
 	}

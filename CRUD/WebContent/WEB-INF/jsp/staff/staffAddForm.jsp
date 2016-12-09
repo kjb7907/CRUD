@@ -26,7 +26,7 @@
 	    	<table class = "table">
 	    	
 	    		<tr>
-					<td>이름 : </td><td><input name = "name" type = "text" style = "width:100px;"></td>
+					<td style = "width:100px">이름 : </td> <td><input name = "name" type = "text" style = "width:150px;"></td>
 				</tr>
 				
 				<tr>

@@ -16,11 +16,11 @@ import dto.Staff;
 public class StaffAddFormAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		System.out.println("----- StaffAddFormAction.java start 사원 등록 폼 준비단계 시작 -----");
 		request.setCharacterEncoding("euc-kr");
-		ActionForward forward = new ActionForward();
+		String path = null;
 		
 		//종교 학력 기술 가져오기
 		
@@ -36,11 +36,11 @@ public class StaffAddFormAction implements Action {
 		request.setAttribute("skList", skList);
 		
 		
-		forward.setPath("/WEB-INF/jsp/staff/staffAddForm.jsp");
+		path ="/WEB-INF/jsp/staff/staffAddForm.jsp";
 		
 		System.out.println("----- StaffAddFormAction.java start 사원 등록 폼 준비단계 종료 -----");
 		System.out.println("");
-		return forward;
+		return path;
 		
 
 	}
