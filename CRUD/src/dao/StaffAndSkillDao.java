@@ -44,6 +44,8 @@ public class StaffAndSkillDao{
 		} catch (SQLException e) {
 			System.out.println("----- 사원 기술정보 입력 실패- ----");
 			e.printStackTrace();
+		}finally{
+			Dao.close(rs, pstmt, conn);
 		}
 		
 		return result;

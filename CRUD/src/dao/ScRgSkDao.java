@@ -48,7 +48,7 @@ public class ScRgSkDao {
 			System.out.println("----- 학력항목 가져오기 실패 -----");
 			e.printStackTrace();
 		}finally{
-			Dao.close1(rs, pstmt,conn);
+			Dao.close(rs, pstmt,conn);
 		}
 		return arr;
 	}
@@ -74,7 +74,7 @@ public class ScRgSkDao {
 			System.out.println("----- 종교항목 가져오기 실패 -----");
 			e.printStackTrace();
 		}finally{
-			Dao.close1(rs, pstmt,conn);
+			Dao.close(rs, pstmt,conn);
 		}
 		return arr;
 	}
@@ -100,7 +100,7 @@ public class ScRgSkDao {
 			System.out.println("----- 기술항목 가져오기 실패 -----");
 			e.printStackTrace();
 		}finally{
-			Dao.close1(rs, pstmt,conn);
+			Dao.close(rs, pstmt,conn);
 		}
 		return arr;
 	}

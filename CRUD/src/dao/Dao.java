@@ -39,7 +39,7 @@ static Connection conn;
 	}
 
 	// PreparedStaatement 객체 1개일경우 종료
-	public static void close1(ResultSet rs,PreparedStatement pstmt,Connection conn){
+	public static void close(ResultSet rs,PreparedStatement pstmt,Connection conn){
 
 		if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 		if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
@@ -47,11 +47,20 @@ static Connection conn;
 	}
 	
 	// PreparedStaatement 객체 2개일경우 종료
-	public static void close2(ResultSet rs,PreparedStatement pstmt1,PreparedStatement pstmt2,Connection conn){
+	public static void close(ResultSet rs,PreparedStatement pstmt1,PreparedStatement pstmt2,Connection conn){
 
 		if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 		if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
 		if (pstmt2 != null) try { pstmt2.close(); } catch(SQLException ex) {}
 		if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	}
+	// PreparedStaatement 객체 3개일경우 종료
+		public static void close(ResultSet rs,PreparedStatement pstmt1,PreparedStatement pstmt2,PreparedStatement pstmt3,Connection conn){
+
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
+			if (pstmt2 != null) try { pstmt2.close(); } catch(SQLException ex) {}
+			if (pstmt2 != null) try { pstmt3.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
 }

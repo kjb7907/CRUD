@@ -15,7 +15,6 @@ public class StaffDao {
 	
 	Connection conn;
 	PreparedStatement staffPstmt;
-	PreparedStatement selectPstmt;
 	PreparedStatement skillPstmt;
 	ResultSet rs;
 	ArrayList<Staff> stfArr;
@@ -37,18 +36,22 @@ public class StaffDao {
 			conn.setAutoCommit(false);
 			
 			//사원정보 등록 및 사원번호 가져오기
+			String[] keyCol ={"no"};
 			staffPstmt = conn.prepareStatement
-					("INSERT INTO STAFF (no,name,sn,graduateday,schoolno,religionno) VALUES (STAFF_SEQ.nextval,?,?,?,?,?),Statement.RETURN_GENERATED_KEYS");
+					("INSERT INTO STAFF (no,name,sn,graduateday,schoolno,religionno) VALUES"
+							+ "(STAFF_SEQ.nextval,?,?,?,?,?)",keyCol);
 			staffPstmt.setString(1,staff.getName());
 			staffPstmt.setString(2, staff.getSn());
 			staffPstmt.setString(3, staff.getGraduateday());
 			staffPstmt.setInt(4, staff.getSchool().getNo());
 			staffPstmt.setInt(5, staff.getReligion().getNo());
+			System.out.println(staffPstmt+"<--staff");
 			staffRow = staffPstmt.executeUpdate();
 			rs=staffPstmt.getGeneratedKeys();
-			rs.next();
-			staffNo = rs.getInt("no");
-			System.out.println("사원번호:"+rs.getInt("no"));
+			if(rs.next()){
+				staffNo = rs.getInt(1);
+			}
+			System.out.println("사원번호:"+staffNo);
 			System.out.println("사원정보 입력 완료");
 
 			//가져온 사원번호로 사원 기술정보 입력
@@ -80,10 +83,7 @@ public class StaffDao {
 			try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();}
 			e.printStackTrace();
 		}finally{
-			try {rs.close();} catch (SQLException e) {e.printStackTrace();}
-			try {staffPstmt.close();} catch (SQLException e) {e.printStackTrace();}
-			try {selectPstmt.close();} catch (SQLException e) {e.printStackTrace();}
-			try {conn.close();} catch (SQLException e) {e.printStackTrace();}
+			Dao.close(rs, staffPstmt, skillPstmt, conn);
 		}
 		return result;
 	}
