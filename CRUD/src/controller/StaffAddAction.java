@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.StaffAndSkillDao;
 import dao.StaffDao;
 import dto.Religion;
 import dto.School;
@@ -17,7 +18,7 @@ public class StaffAddAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("----- StaffAddAction.java start 사원 등록 처리 준비단계 시작 -----");
+		System.out.println("----- StaffAddAction.java start 사원 등록 처리 단계 시작 -----");
 		request.setCharacterEncoding("euc-kr");
 		String name = request.getParameter("name");
 		System.out.println("이름 : "+name);
@@ -53,18 +54,18 @@ public class StaffAddAction implements Action {
 		religion.toString();
 		school.toString();
 		
-		staff.setName(name);
+		staff.setName(name);//사원정보 세팅
 		staff.setSn(sn);
 		staff.setReligion(religion);
 		staff.setSchool(school);
 		staff.setGraduateday(graduateday);
-		System.out.println("사원 정보 세팅");
+
 		
-		StaffDao dao = new StaffDao();
-		dao.staffInsert(staff, arr);
+		StaffDao dao1 = new StaffDao();
+		int result1 = dao1.staffInsert(staff,arr);
 		
 			
-		System.out.println("----- StaffAddAction.java close 사원 등록 처리 준비단계 종료 -----");
+		System.out.println("----- StaffAddAction.java close 사원 등록 처리 단계 종료 -----");
 		
 		return null;
 	}
