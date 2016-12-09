@@ -62,11 +62,14 @@ public class StaffAddAction implements Action {
 
 		
 		StaffDao dao1 = new StaffDao();
-		int result1 = dao1.staffInsert(staff,arr);
-		
-			
+		int result = dao1.staffInsert(staff,arr);
+		if(result == 0 ){
+			System.out.println("사원등록 실패");
+		}else{
+			System.out.println("사원등록 성공");
+		}
 		System.out.println("----- StaffAddAction.java close 사원 등록 처리 단계 종료 -----");
-		
+
 		return null;
 	}
 

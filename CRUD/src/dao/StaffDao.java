@@ -14,8 +14,9 @@ import dto.Staff;
 public class StaffDao extends Dao {
 	
 	Connection conn;
-	PreparedStatement pstmt1;
-	PreparedStatement pstmt2;
+	PreparedStatement staffPstmt;
+	PreparedStatement selectPstmt;
+	PreparedStatement skillPstmt;
 	ResultSet rs;
 	ArrayList<Staff> stfArr;
 	
@@ -28,43 +29,65 @@ public class StaffDao extends Dao {
 		System.out.println("----- dao.staffDao.staffInsert 메서드 사원정보 입력 메서드 -----");
 		conn=DBUtil.getConnection();
 		int result=0;
+		int staffResult=0;
+		int skillResult=0;
+		int staffNo = 0;
 		try{
+			//트랜젝션
+			conn.setAutoCommit(false);
+			
 			//사원정보 등록
-			pstmt1 = conn.prepareStatement
+			staffPstmt = conn.prepareStatement
 					("INSERT INTO STAFF (no,name,sn,graduateday,schoolno,religionno) VALUES (STAFF_SEQ.nextval,?,?,?,?,?)");
-			pstmt1.setString(1,staff.getName());
-			pstmt1.setString(2, staff.getSn());
-			pstmt1.setString(3, staff.getGraduateday());
-			pstmt1.setInt(4, staff.getSchool().getNo());
-			pstmt1.setInt(5, staff.getReligion().getNo());
-			result = pstmt1.executeUpdate();
+			staffPstmt.setString(1,staff.getName());
+			staffPstmt.setString(2, staff.getSn());
+			staffPstmt.setString(3, staff.getGraduateday());
+			staffPstmt.setInt(4, staff.getSchool().getNo());
+			staffPstmt.setInt(5, staff.getReligion().getNo());
+			staffResult = staffPstmt.executeUpdate();
 			System.out.println("사원정보 입력 완료");
+			staffPstmt.close();
 			
 			//사원번호 가져오기
-			pstmt2 = conn.prepareStatement("SELECT no FROM STAFF WHERE sn = ?");
-			pstmt2.setString(1, staff.getSn());
-			System.out.println(pstmt2+"<--pstmt2");
-			rs = pstmt2.executeQuery();
-			System.out.println("사원번호가져오는쿼리문실행");
-			rs.next();
-			System.out.println("rs.next()까지");
-			int staffNo = rs.getInt("no");
-			System.out.println("사원번호 가져오기 완료");
+			selectPstmt = conn.prepareStatement("SELECT no FROM STAFF WHERE sn = ?");
+			selectPstmt.setString(1, staff.getSn());
+			System.out.println(selectPstmt+"<--pstmt2");
+			rs = selectPstmt.executeQuery();
+			if(rs.next()){
+				staffNo = rs.getInt("NO");
+				System.out.println("사원번호"+rs.getInt("NO"));
+				System.out.println("사원번호 가져오기 완료");
+			}else{
+				System.out.println("사원번호 가져오기 실패");
+				return result;
+			}
+			selectPstmt.close();
 			
 			//가져온 사원번호로 사원 기술정보 입력
-			pstmt1 = conn.prepareStatement
+			skillPstmt = conn.prepareStatement
 					("INSERT INTO STAFFSKILL(no,staffno,skillno) VALUES(STAFFSKILL_SEQ.nextval,?,?)");
 			for(int i=0;i<arr.size();i++){ 
 				Staff st = new Staff();
 				st.setNo(staffNo);//가져온 사원번호 사원 객체에 입력
 				Skill skill = arr.get(i); //스킬객체를 생성하고 배열의 스킬객체를 담는다.
-				pstmt1.setInt(1, st.getNo()); //가져온 사원번호 쿼리문에 전달
-				pstmt1.setInt(2, skill.getNo()); //스킬객체의 번호 전달
-				pstmt1.executeUpdate();
+				skillPstmt.setInt(1, st.getNo()); //가져온 사원번호 쿼리문에 전달
+				skillPstmt.setInt(2, skill.getNo()); //스킬객체의 번호 전달
+				skillResult = skillPstmt.executeUpdate();
 			}
 			System.out.println("사원 기술 입력 완료");
 			
-			System.out.println("----- 사원 등록 성공-----");
+			//사원등록성공여부 판단 
+			if(staffResult!=0 && skillResult!=0){
+				//사원정보,기술 입력 성공시 result 에 1 대입
+				System.out.println("----- 사원 정보,기술 입력 성공-----");
+				result = 1;
+			}else{
+				//사원정보,기술 입력 실패시 result 에 0 대입
+				System.out.println("----- 사원 정보,기술 입력 실패 -----");
+				result = 0;
+			}		
+			conn.setAutoCommit(true);
+			
 		}catch(Exception e){
 			System.out.println("----- 사원 등록 실패 -----");
 			e.printStackTrace();
@@ -77,13 +100,13 @@ public class StaffDao extends Dao {
 				e.printStackTrace();
 			}
 			try {
-				pstmt1.close();
+				staffPstmt.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
-				pstmt2.close();
+				selectPstmt.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
