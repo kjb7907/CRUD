@@ -15,7 +15,7 @@ public class StaffSearchFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("----- StaffSearchForm.java  사원 검색 폼 -----");
+		System.out.println("	----- StaffSearchForm.java  사원 검색 폼 클래스 시작-----");
 		String path = null;
 		
 		//종교 학력 기술 가져오기
@@ -32,8 +32,7 @@ public class StaffSearchFormAction implements Action {
 		request.setAttribute("skList", skList);
 		path ="/WEB-INF/jsp/staff/staffSearchForm.jsp";
 		
-		System.out.println("----- StaffSearchForm.java  사원 검색 폼 종료 -----");
-		System.out.println("");
+		System.out.println("	----- StaffSearchForm.java  사원 검색 폼 클래스 종료 -----");
 		return path;
 	}
 

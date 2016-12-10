@@ -18,18 +18,18 @@ public class StaffAddAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("----- StaffAddAction.java start 사원 등록 처리 단계 시작 -----");
+		System.out.println("	----- StaffAddAction.java start 사원 등록 처리 클래스 시작 -----");
 		request.setCharacterEncoding("euc-kr");
 		String name = request.getParameter("name");
-		System.out.println("이름 : "+name);
+		System.out.println("		이름 : "+name);
 		String sn = request.getParameter("sn1")+request.getParameter("sn2");
-		System.out.println("주민번호 : " +sn);
+		System.out.println("		주민번호 : " +sn);
 		int religionNo = Integer.parseInt(request.getParameter("religionNo"));
-		System.out.println("종교 : "+religionNo);
+		System.out.println("		종교 : "+religionNo);
 		int schoolNo = Integer.parseInt(request.getParameter("schoolNo"));
-		System.out.println("학력 : "+schoolNo);
+		System.out.println("		학력 : "+schoolNo);
 		String graduateday = request.getParameter("graduateday");
-		System.out.println("졸업년도 : "+graduateday);
+		System.out.println("		졸업년도 : "+graduateday);
 		String[] skillNo = request.getParameterValues("skillNo");
 		
 		
@@ -43,7 +43,7 @@ public class StaffAddAction implements Action {
 		for(int i= 0;i<skillNo.length;i++){ //기술정보 세팅
 			Skill skill = new Skill();
 			skill.setNo(Integer.parseInt(skillNo[i]));
-			System.out.println(skill.toString());
+			System.out.println("		"+skill.toString());
 			arr.add(skill);
 		}
 		
@@ -63,11 +63,11 @@ public class StaffAddAction implements Action {
 		StaffDao dao1 = new StaffDao();
 		int result = dao1.staffInsert(staff,arr);
 		if(result == 0 ){
-			System.out.println("사원등록 실패");
+			System.out.println("		사원등록 실패");
 		}else{
-			System.out.println("사원등록 성공");
+			System.out.println("		사원등록 성공");
 		}
-		System.out.println("----- StaffAddAction.java close 사원 등록 처리 단계 종료 -----");
+		System.out.println("	----- StaffAddAction.java close 사원 등록 처리 클래스 종료 -----");
 
 		return null;
 	}

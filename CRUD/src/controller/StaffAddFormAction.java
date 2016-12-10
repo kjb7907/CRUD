@@ -18,7 +18,7 @@ public class StaffAddFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("----- StaffAddFormAction.java start 사원 등록 폼 준비단계 시작 -----");
+		System.out.println("	----- StaffAddFormAction.java start 사원 등록 폼 클래스시작 -----");
 		request.setCharacterEncoding("euc-kr");
 		String path = null;
 		
@@ -38,8 +38,7 @@ public class StaffAddFormAction implements Action {
 		
 		path ="/WEB-INF/jsp/staff/staffAddForm.jsp";
 		
-		System.out.println("----- StaffAddFormAction.java start 사원 등록 폼 준비단계 종료 -----");
-		System.out.println("");
+		System.out.println("	----- StaffAddFormAction.java start 사원 등록 폼 클래스 종료 -----");
 		return path;
 		
 

@@ -20,12 +20,11 @@ public class StaffDao {
 	ArrayList<Staff> stfArr;
 	
 	public StaffDao(){
-		System.out.println("----- dao.StaffDao.java start 사원정보 입력 수정 삭제 클래스 -----");
-		System.out.println("");
+		System.out.println("		----- dao.StaffDao.java start 사원정보 입력 수정 삭제 검색 클래스 -----");
 	}
 	
 	public int staffInsert(Staff staff,ArrayList<Skill> arr){
-		System.out.println("----- dao.staffDao.staffInsert 사원정보 입력 메서드 -----");
+		System.out.println("			----- dao.staffDao.staffInsert 사원정보 입력 메서드 -----");
 		conn=Dao.getConnection();
 		int result=0;
 		int staffRow=0;
@@ -45,14 +44,13 @@ public class StaffDao {
 			staffPstmt.setString(3, staff.getGraduateday());
 			staffPstmt.setInt(4, staff.getSchool().getNo());
 			staffPstmt.setInt(5, staff.getReligion().getNo());
-			System.out.println(staffPstmt+"<--staff");
 			staffRow = staffPstmt.executeUpdate();
 			rs=staffPstmt.getGeneratedKeys();
 			if(rs.next()){
 				staffNo = rs.getInt(1);
 			}
-			System.out.println("사원번호:"+staffNo);
-			System.out.println("사원정보 입력 완료");
+			System.out.println("				사원번호:"+staffNo);
+			System.out.println("				사원정보 입력 완료");
 
 			//가져온 사원번호로 사원 기술정보 입력
 			skillPstmt = conn.prepareStatement
@@ -63,22 +61,22 @@ public class StaffDao {
 				skillPstmt.setInt(2, skill.getNo()); //스킬객체의 번호 전달
 				skillRow = skillPstmt.executeUpdate();
 			}
-			System.out.println("사원 기술 입력 완료");
+			System.out.println("				사원 기술 입력 완료");
 			
 			//사원등록성공여부 판단 
 			if(staffRow!=0 && skillRow!=0){
 				//사원정보,기술 입력 성공시 result 에 1 대입
-				System.out.println("----- 사원 정보,기술 입력 성공-----");
+				System.out.println("				사원 정보,기술 입력 성공");
 				result = 1;
 			}else{
 				//사원정보,기술 입력 실패시 result 에 0 대입
-				System.out.println("----- 사원 정보,기술 입력 실패 -----");
+				System.out.println("				사원 정보,기술 입력 실패");
 				result = 0;
 			}		
 			conn.commit();
 			
 		}catch(Exception e){
-			System.out.println("----- 사원 등록 실패 -----");
+			System.out.println("				사원 등록 실패");
 			result =0;
 			try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();}
 			e.printStackTrace();

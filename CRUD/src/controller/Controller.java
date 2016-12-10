@@ -39,14 +39,14 @@ public class Controller extends HttpServlet {
 		 String contextPath=request.getContextPath();
 		 String command=RequestURI.substring(contextPath.length());
 		 //요청온 주소에서 contextPath만큼 자른 문자열로 요청 판단
-		 System.out.println("요청 : "+command);
+		 System.out.println("	요청 : "+command);
 		 Action action=null;
 		 String path=null;
 		 
 		 //사원 등록 요청시
 		 if(command.equals("/staffAddForm.jbin")){
 			 
-			 System.out.println("----- 조건 : 사원등록 폼  -----");
+			 System.out.println("	조건 : 사원등록 폼");
 			 /*
 			  	사원등록 폼에 스킬,종교,학력 객체를 DB에서 가져와 전달하기위해
 			   	StaffAddFormAction 메서드 호출한 반환값 action 객체에 저장하고
@@ -62,7 +62,7 @@ public class Controller extends HttpServlet {
 				
 		 }else if(command.equals("/StaffAddAction.jbin")){
 			 
-			 System.out.println("----- 조건 : 사원등록 처리  -----");
+			 System.out.println("	조건 : 사원등록 처리");
 			 action  = new StaffAddAction();
 				try {
 					path=action.execute(request, response );
@@ -72,7 +72,7 @@ public class Controller extends HttpServlet {
 				
 		 }else if(command.equals("/StaffList.jbin")){
 			 
-			 System.out.println("----- 조건 : 사원 리스트 -----");
+			 System.out.println("	조건 : 사원 리스트");
 			 action  = new StaffAddAction();
 				try {
 					path=action.execute(request, response );
@@ -82,7 +82,7 @@ public class Controller extends HttpServlet {
 				
 		 }else if(command.equals("/StaffSearchForm.jbin")){
 			 
-			 System.out.println("----- 조건 : 사원조회 -----");
+			 System.out.println("	조건 : 사원조회");
 			 action  = new StaffSearchFormAction();
 				try {
 					path=action.execute(request, response );
@@ -94,11 +94,10 @@ public class Controller extends HttpServlet {
 		 	
 		 //forward
 			if(path != null){
-					System.out.println("----- 경로 이동 시작 ------");
+					System.out.println("	----- 경로 이동 시작 ------");
 					RequestDispatcher dispatcher=
 						request.getRequestDispatcher(path);
-					System.out.println(path + "<--- forward.getPath()[jsp 이동경로]Controller.java");
-					System.out.println();
+					System.out.println("		이동경로 : "+path);
 					dispatcher.forward(request, response);
 			}
 			System.out.println("-----Controller.java close 컨트롤러 종료-----");
