@@ -16,7 +16,7 @@
 
             
 <div class="col-sm-8">            
-	<div class="panel panel-success">
+	<div class="panel panel-primary">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">사원 등록</h3>
 	  </div>
@@ -26,11 +26,11 @@
 	    	<table class = "table">
 	    	
 	    		<tr>
-					<td style = "width:100px">이름 : </td> <td><input name = "name" type = "text" style = "width:150px;"></td>
+					<td style = "width:100px">이름  </td> <td><input name = "name" type = "text" style = "width:150px;"></td>
 				</tr>
 				
 				<tr>
-					<td>주민등록번호:</td>
+					<td>주민등록번호</td>
 					<td>
 						<input name = "sn1" type = "text"  style = "width:100px;" >
 						 - 
@@ -52,10 +52,9 @@
 				<tr>
 					<td>학력</td>
 					<td>
-					
-					<c:forEach var ="sc" items="${scList}">
-						<input type = "radio" name = "schoolNo" value ="${sc.no}">${sc.graduate}
-					</c:forEach>
+						<c:forEach var ="sc" items="${scList}">
+							<input type = "radio" name = "schoolNo" value ="${sc.no}">${sc.graduate}
+						</c:forEach>
 					</td>
 				</tr>
 				
@@ -65,7 +64,6 @@
 						<c:forEach var="sk" items = "${skList}">
 							<input name = "skillNo" type="checkbox" value="${sk.no}">${sk.name}
 						</c:forEach>
-
 					</td>
 				</tr>
 				

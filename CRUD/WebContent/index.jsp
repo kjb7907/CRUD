@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect(request.getContextPath()+"/staffAddForm.jbin"); %>
+<% response.sendRedirect(request.getContextPath()+"/StaffSearchForm.jbin"); %>
 </body>
 </html>

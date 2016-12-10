@@ -80,10 +80,10 @@ public class Controller extends HttpServlet {
 					e.printStackTrace();
 				}
 				
-		 }else if(command.equals("/StaffSearch.jbin")){
+		 }else if(command.equals("/StaffSearchForm.jbin")){
 			 
 			 System.out.println("----- 조건 : 사원조회 -----");
-			 action  = new StaffAddAction();
+			 action  = new StaffSearchFormAction();
 				try {
 					path=action.execute(request, response );
 				} catch (Exception e) {

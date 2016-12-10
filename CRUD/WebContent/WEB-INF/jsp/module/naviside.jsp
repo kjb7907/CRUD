@@ -37,7 +37,7 @@
 
 		  <a href="<%=request.getContextPath() %>/staffList.jbin" class="list-group-item">사원 목록
 		  </a>
-		  <a href="<%=request.getContextPath() %>/staffSearch.jbin" class="list-group-item">사원 조회
+		  <a href="<%=request.getContextPath() %>/StaffSearchForm.jbin" class="list-group-item">사원 조회
 		  </a>
 		  <a href="<%=request.getContextPath() %>/staffAddForm.jbin" class="list-group-item">사원 등록
 		  </a>
