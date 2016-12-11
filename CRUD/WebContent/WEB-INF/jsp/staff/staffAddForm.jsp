@@ -15,7 +15,7 @@
 
 
             
-<div class="col-sm-8">            
+<div class="col-sm-6">            
 	<div class="panel panel-primary">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">사원 등록</h3>

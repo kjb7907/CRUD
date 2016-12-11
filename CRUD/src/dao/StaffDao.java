@@ -20,7 +20,7 @@ public class StaffDao {
 	ArrayList<Staff> stfArr;
 	
 	public StaffDao(){
-		System.out.println("		----- dao.StaffDao.java start 사원정보 입력 수정 삭제 검색 클래스 -----");
+		System.out.println("		----- dao.StaffDao.java 사원정보 입력 수정 삭제 클래스 -----");
 	}
 	
 	public int staffInsert(Staff staff,ArrayList<Skill> arr){

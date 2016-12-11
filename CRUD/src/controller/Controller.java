@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ScRgSkDao;
+import dto.Religion;
+import dto.School;
+import dto.Skill;
 import sun.net.www.content.text.plain;
 
 
@@ -20,6 +25,11 @@ public class Controller extends HttpServlet {
         super();
 
     }
+    
+    public void init()throws ServletException{
+        System.out.println("-----controller.java init 메서드 시작 -----");
+        System.out.println("-----controller.java init 메서드 종료 -----");
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -28,12 +38,12 @@ public class Controller extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		doProcess(request,response);
 	}
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		System.out.println("-----Controller.java Start 컨트롤러 시작  -----");
 		 String RequestURI=request.getRequestURI();
 		 String contextPath=request.getContextPath();
@@ -47,11 +57,6 @@ public class Controller extends HttpServlet {
 		 if(command.equals("/staffAddForm.jbin")){
 			 
 			 System.out.println("	조건 : 사원등록 폼");
-			 /*
-			  	사원등록 폼에 스킬,종교,학력 객체를 DB에서 가져와 전달하기위해
-			   	StaffAddFormAction 메서드 호출한 반환값 action 객체에 저장하고
-			   	ActionFoward 객체에 execute 메서드의 반환값 저장해 포워딩할 경로 세팅
-			  */
 				action = new StaffAddFormAction();
 				try {
 					path = action.execute(request, response);
@@ -81,8 +86,8 @@ public class Controller extends HttpServlet {
 				}
 				
 		 }else if(command.equals("/StaffSearchForm.jbin")){
-			 
-			 System.out.println("	조건 : 사원조회");
+			
+			 System.out.println("	조건 : 사원검색");
 			 action  = new StaffSearchFormAction();
 				try {
 					path=action.execute(request, response );
