@@ -29,7 +29,9 @@
 	          $("#name").blur();
           }
         }
-       }else if(!($.isNumeric($("#sn1").val()))){
+       }
+      
+       if(!($.isNumeric($("#sn1").val()))){
     	 	 console.log("firstSocialNo 11");
 			$("#sn1Helper").text(" 첫번째 입력칸 6자리 숫자만 입력 가능합니다.");
 			$("#sn1").focus();
