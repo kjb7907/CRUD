@@ -14,18 +14,26 @@
   {
     $("#btn").click(function()
     {
-      console.log('btn click');
-      if($("#name").val() != "")
-      {
-        console.log('btn click2');
-        for(var i = 0; i<$("#name").val().length; i++)
-        {
+      console.log('btn click'); //버튼클릭까지 넘어옴
+      
+      if($("#name").val() == ""){	//이름입력칸이 비어있을경우
+          $("#nameHelper").text('이름을 입력하세요.');
+          $("#name").focus();
+      }else if($("#name").val() != ""){	//이름입력칸이 공백이 아니고 
+        for(var i = 0; i<$("#name").val().length; i++){	//입력된 문자의 유니코드가 128과 같거나 크면
           if($("#name").val().charCodeAt(i)<128){
-            $("#Helper").text('한글만 입력 가능합니다.');
-            $("#name").focus();
+		      $("#nameHelper").text('한글만 입력 가능합니다.');
+		      $("#name").focus();
+          }else{	//조건 만족시에는 Helper 공백
+	          $("#nameHelper").text('');
+	          $("#name").blur();
           }
         }
-      }
+       }else if(!($.isNumeric($("#sn1").val()))){
+    	 	 console.log("firstSocialNo 11");
+			$("#sn1Helper").text(" 첫번째 입력칸 6자리 숫자만 입력 가능합니다.");
+			$("#sn1").focus();
+       }
     });
   });
 </script>
@@ -36,7 +44,7 @@
 
 
 
-<div class="col-sm-6">
+<div class="col-sm-8">
 	<div class="panel panel-primary">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">사원 등록</h3>
@@ -47,7 +55,11 @@
 	    	<table class = "table">
 
 	    		<tr>
-					<td style = "width:100px">이름  </td> <td><input id = "name" name = "name" type = "text" style = "width:150px;"></td>
+					<td style = "width:100px">이름  </td> 
+					<td>
+						<input id = "name" name = "name" type = "text" style = "width:150px;"> 
+						<span id = "nameHelper" style = " font-size:1em;  color: red;"> 
+					</td>
 				</tr>
 
 				<tr>
@@ -56,6 +68,8 @@
 						<input name = "sn1" type = "text"  style = "width:100px;" >
 						 -
 						<input name = "sn2" type = "text" style = "width:100px;">
+						<span id = "sn1Helper" style = " font-size:1em;  color: red;">
+						<span id = "sn2Helper" style = " font-size:1em;  color: red;">
 					</td>
 				</tr>
 
@@ -92,9 +106,7 @@
 					<td>졸업년도</td>
 					<td><input type ="date" name = "graduateday"></td>
 				</tr>
-        <tr>
-          <td colspan="6"><span id = "Helper" style = " font-size:1em;  color: red;"></sapn></td>
-        </tr>
+
 			</table>
 			 <button type="reset" class="btn btn-default">취소</button>
        <button id = "btn" type="button" class="btn btn-primary">등록</button>
