@@ -20,49 +20,44 @@
           $("#nameHelper").text('이름을 입력하세요.');
           $("#name").focus();
       }else if($("#name").val() != ""){	//이름입력칸이 공백이 아니고
-        for(var i = 0; i<$("#name").val().length; i++){	//입력된 문자의 유니코드가 128과 같거나 크면
+        for(var i = 0; i<$("#name").val().length; i++){	//입력된 문자의 유니코드가 128과 같아지거나 커질때 까지
           if($("#name").val().charCodeAt(i)<128){
 		      $("#nameHelper").text('한글만 입력 가능합니다.');
 		      $("#name").focus();
-          }else{	//조건 만족시에는 Helper 공백
-	          $("#nameHelper").text('');
-	          $("#name").blur();
-          }
-        }
-       }
-		//나머지 
-		if(!($.isNumeric($("#sn1").val()))){
+          }else if(!($.isNumeric($("#sn1").val()))){
 			console.log("주민등록번호 앞자리 미선택");
+			$("#nameHelper").text('');
 			$("#snHelper").text(" 첫번째 입력칸 6자리 숫자만 입력 가능합니다.");
 			$("#sn1").focus();
-		}else if(!($.isNumeric($("#sn2").val()))){
+		  }else if(!($.isNumeric($("#sn2").val()))){
 			console.log("주민등록번호 뒷자리 미선택");
 			$("#snHelper").text(" ");
 			$("#snHelper").text(" 두번째 입력칸 7자리 숫자만 입력 가능합니다.");
 			$("#sn2").focus();
-     	}else if($("#religion").val() == ""){
+   		  }else if($("#religion").val() == ""){
 			console.log("종교미선택");
 			$("#snHelper").text(" ");
 			$("#relHelper").text(" 종교를 선택하세요.");
-		}else if((!$("#school1").is(":checked"))&&(!$("#school2").is(":checked"))&&(!$("#school3").is(":checked"))){
+		  }else if((!$("#school1").is(":checked"))&&(!$("#school2").is(":checked"))&&(!$("#school3").is(":checked"))){
 			console.log("학력 미선택");
 			$("#relHelper").text("");
 			$("#scHelper").text("최종학력을 선택해주세요");
-		}else if((!$("#skill1").is(":checked"))&&(!$("#skill2").is(":checked"))&&(!$("#skill3").is(":checked"))&&(!$("#skill4").is(":checked"))&&(!$("#skill5").is(":checked"))){
+		  }else if((!$("#skill1").is(":checked"))&&(!$("#skill2").is(":checked"))&&(!$("#skill3").is(":checked"))&&(!$("#skill4").is(":checked"))&&(!$("#skill5").is(":checked"))){
 			console.log("기술 미선택");
 			$("#scHelper").text("");
 			$("#skHelper").text("기술을 1개 이상 선택해주세요");
-		}else if($("#date").val()==""){
+		  }else if($("#date").val()==""){
 			console.log($("#date").val());
 			console.log("졸업일 미선택");
 			$("#skHelper").text("");
 			$("#dateHelper").text("졸업일을 선택해 주세요");
 			$("#date").focus();
-		}else{
+		  }else{
 			console.log("회원가입 조건 충족");
 			$("form").submit();
-		}
-   	 
+		  } 
+        }
+       }
     });
   });
 </script>

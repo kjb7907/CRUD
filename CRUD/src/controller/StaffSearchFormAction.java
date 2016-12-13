@@ -10,6 +10,7 @@ import dto.Religion;
 import dto.School;
 import dto.SearchOption;
 import dto.Skill;
+import interfacepack.Action;
 
 public class StaffSearchFormAction implements Action {
 

@@ -31,16 +31,10 @@
 <div class="col-sm-2 sidenav">
 	<div class = "well">
 		<div class="list-group">
-		  <a href="#" class="list-group-item active">
-		   	관리자 메뉴
-		  </a>
-
-		  <a href="<%=request.getContextPath() %>/staffList.jbin" class="list-group-item">사원 목록
-		  </a>
-		  <a href="<%=request.getContextPath() %>/StaffSearchForm.jbin" class="list-group-item">사원 조회
-		  </a>
-		  <a href="<%=request.getContextPath() %>/staffAddForm.jbin" class="list-group-item">사원 등록
-		  </a>
+		  <a href="#" class="list-group-item active">관리자 메뉴 </a>
+			
+		  <a href="<%=request.getContextPath() %>/StaffAddForm.jbin" class="list-group-item">사원 등록</a>
+		  <a href="<%=request.getContextPath() %>/StaffList.jbin" class="list-group-item">사원 목록</a>
 		  </br></br></br></br></br></br></br></br></br></br></br></br>
 		  </br></br></br></br></br></br></br></br></br></br></br></br>
 		  </br></br></br></br></br></br></br></br></br></br></br></br>

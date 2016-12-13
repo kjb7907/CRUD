@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import dto.Religion;
+import dto.School;
 import dto.Skill;
 import dto.Staff;
 
@@ -18,11 +20,41 @@ public class StaffDao {
 	PreparedStatement skillPstmt;
 	ResultSet rs;
 	ArrayList<Staff> stfArr;
+	ArrayList<Skill> skArr;
 	
 	public StaffDao(){
 		System.out.println("		----- dao.StaffDao.java 사원정보 입력 수정 삭제 클래스 -----");
 	}
 	
+	public ArrayList<Staff> staffListAll(){
+		System.out.println("			----- dao.staffDao.staffListAll 전체 사원 staff 객체로 가져오는 메서드 -----");
+		conn=Dao.getConnection();
+		try {
+			staffPstmt = conn.prepareStatement("SELECT no,name,sn,graduateday,schoolno,religionno FROM STAFF");
+			rs = staffPstmt.executeQuery();
+			while(rs.next()){
+				
+				Religion rel = new Religion();
+				rel.setNo(rs.getInt("religionno"));
+				School sc = new School();
+				sc.setNo(rs.getInt("schoolno"));
+				Staff st = new Staff();
+				st.setNo(rs.getInt("no"));
+				st.setName(rs.getString("name"));
+				st.setSn(rs.getString("sn"));
+				st.setGraduateday(rs.getString("graduateday"));
+				st.setReligion(rel);
+				st.setSchool(sc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			Dao.close(rs, staffPstmt, conn);
+		}
+		return stfArr;
+	}
+	
+	//사원정보 입력 
 	public int staffInsert(Staff staff,ArrayList<Skill> arr){
 		System.out.println("			----- dao.staffDao.staffInsert 사원정보 입력 메서드 -----");
 		conn=Dao.getConnection();

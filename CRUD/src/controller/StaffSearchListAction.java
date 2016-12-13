@@ -3,6 +3,8 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import interfacepack.Action;
+
 public class StaffSearchListAction implements Action {
 
 	@Override

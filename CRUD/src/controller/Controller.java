@@ -14,6 +14,7 @@ import dao.ScRgSkDao;
 import dto.Religion;
 import dto.School;
 import dto.Skill;
+import interfacepack.Action;
 import sun.net.www.content.text.plain;
 
 
@@ -54,7 +55,7 @@ public class Controller extends HttpServlet {
 		 String path=null;
 		 
 		 //사원 등록 요청시
-		 if(command.equals("/staffAddForm.jbin")){
+		 if(command.equals("/StaffAddForm.jbin")){
 			 
 			 System.out.println("	조건 : 사원등록 폼");
 				action = new StaffAddFormAction();
@@ -78,7 +79,7 @@ public class Controller extends HttpServlet {
 		 }else if(command.equals("/StaffList.jbin")){
 			 
 			 System.out.println("	조건 : 사원 리스트");
-			 action  = new StaffAddAction();
+			 action  = new StaffListAction();
 				try {
 					path=action.execute(request, response );
 				} catch (Exception e) {
